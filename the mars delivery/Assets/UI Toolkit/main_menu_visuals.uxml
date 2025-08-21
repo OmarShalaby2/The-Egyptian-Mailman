@@ -1,0 +1,20 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/main_menu_style_sheet.uss?fileID=7433441132597879392&amp;guid=f8a35fe74b002824c950ef0d7eddc5ef&amp;type=3#main_menu_style_sheet" />
+    <ui:VisualElement name="container" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/Main%20Menu%20Assets/ChatGPT%20Image%20Aug%2019,%202025,%2007_42_03%20PM.png?fileID=21300000&amp;guid=28bd6408b7ee76145bd1523cecbc260f&amp;type=3#ChatGPT Image Aug 19, 2025, 07_42_03 PM&quot;);">
+        <ui:Label tabindex="-1" text="main menu" parse-escape-sequences="true" display-tooltip-when-elided="true" name="main_menu" class="header" />
+        <ui:Label tabindex="-1" text="levels" parse-escape-sequences="true" display-tooltip-when-elided="true" name="levels" class="header" />
+        <ui:Label tabindex="-1" text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="options_label" class="header" />
+        <ui:Button text="Start" parse-escape-sequences="true" display-tooltip-when-elided="true" name="start" class="button" style="left: 0; top: 10%;" />
+        <ui:Button text="Options" parse-escape-sequences="true" display-tooltip-when-elided="true" name="options" class="button" style="top: 30%;" />
+        <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="exit" class="button" style="top: 50%;" />
+        <ui:Button text="Level 1" parse-escape-sequences="true" display-tooltip-when-elided="true" name="level1" class="button" style="margin-top: 5%; top: 10%;" />
+        <ui:Button text="Level 2" parse-escape-sequences="true" display-tooltip-when-elided="true" name="level2" class="button" style="margin-top: 5%; top: 20%;" />
+        <ui:Button text="Level 3" parse-escape-sequences="true" display-tooltip-when-elided="true" name="level3" class="button" style="margin-top: 5%; top: 30%;" />
+        <ui:Button text="Level 4" parse-escape-sequences="true" display-tooltip-when-elided="true" name="level4" class="button" style="margin-top: 5%; top: 40%;" />
+        <ui:Button text="Level 5" parse-escape-sequences="true" display-tooltip-when-elided="true" name="level5" class="button" style="margin-top: 5%; top: 50%;" />
+        <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="back" class="button" style="left: 60%; top: 5%; position: absolute; margin-top: 5%;" />
+        <ui:Button text="Back" parse-escape-sequences="true" display-tooltip-when-elided="true" name="back1" class="button" style="left: 60%; top: 5%; margin-top: 5%;" />
+        <ui:Button text="Music" parse-escape-sequences="true" display-tooltip-when-elided="true" name="music" class="button" style="top: 30%;" />
+        <ui:Button text="Sounds" parse-escape-sequences="true" display-tooltip-when-elided="true" name="sounds" class="button" style="top: 10%;" />
+    </ui:VisualElement>
+</ui:UXML>

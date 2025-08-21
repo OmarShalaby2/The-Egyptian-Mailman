@@ -1,0 +1,61 @@
+.header {
+    -unity-font: url("project://database/Assets/Main%20Menu%20Assets/another%20GUI%20Assets%20if%20you%20dont%20like%20the%20prievious/10%20Font/Chela_One/ChelaOne-Regular.ttf?fileID=12800000&guid=834f4a57ae3b1d44789d770aa4730fd9&type=3#ChelaOne-Regular");
+    -unity-text-align: middle-center;
+    width: 15%;
+    height: 10%;
+    font-size: 96px;
+    color: rgb(233, 255, 44);
+    align-self: center;
+    justify-content: flex-start;
+    border-left-color: rgba(218, 240, 90, 0);
+    border-right-color: rgba(218, 240, 90, 0);
+    border-top-color: rgba(218, 240, 90, 0);
+    border-bottom-color: rgba(218, 240, 90, 0);
+    border-top-width: 20px;
+    border-right-width: 20px;
+    border-bottom-width: 20px;
+    border-left-width: 20px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-image: none;
+    -unity-font-style: normal;
+    -unity-font-definition: initial;
+    position: absolute;
+}
+
+.button {
+    display: flex;
+    width: 30%;
+    height: 70px;
+    -unity-text-align: middle-center;
+    white-space: nowrap;
+    text-overflow: clip;
+    background-image: url("project://database/Assets/Main%20Menu%20Assets/another%20GUI%20Assets%20if%20you%20dont%20like%20the%20prievious/3%20Icons/Buttons2/Button2_05.png?fileID=21300000&guid=6858d4e59c2ced84889dbd9f26a3fb54&type=3#Button2_05");
+    margin-top: 10%;
+    margin-left: 5%;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 35px;
+    border-bottom-left-radius: 35px;
+    justify-content: flex-start;
+    flex-direction: column;
+    position: absolute;
+    left: auto;
+    top: auto;
+    align-self: auto;
+    -unity-font: url("project://database/Assets/Main%20Menu%20Assets/another%20GUI%20Assets%20if%20you%20dont%20like%20the%20prievious/10%20Font/Chela_One/ChelaOne-Regular.ttf?fileID=12800000&guid=834f4a57ae3b1d44789d770aa4730fd9&type=3#ChelaOne-Regular");
+    -unity-font-definition: initial;
+    font-size: 48px;
+    transition-duration: 0.1s;
+    transition-timing-function: ease-in-out;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    flex-grow: 0;
+}
+
+.button:hover {
+    scale: 1.1 1.1;
+    -unity-background-image-tint-color: rgb(255, 0, 11);
+}
