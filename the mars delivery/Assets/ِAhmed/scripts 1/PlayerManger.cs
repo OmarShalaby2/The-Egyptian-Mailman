@@ -32,7 +32,7 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         ReadInput();
-        //FlipVisual();
+     
         UpdateAttackPoint();
         UpdateAnimator();
 
@@ -56,18 +56,7 @@ public class PlayerManager : MonoBehaviour
             lastDir = input.normalized;
     }
 
-    void FlipVisual()
-    {
-        if (!sprite) return;
-
-        // Update facing when there's horizontal input
-        if (Mathf.Abs(input.x) > 0.001f)
-            facingLeft = input.x < 0f;
-
-        // Flip only the sprite (not the Rigidbody root)
-        sprite.flipX = facingLeft;
-    }
-
+    
     void UpdateAttackPoint()
     {
         if (!attackPoint) return;
