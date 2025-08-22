@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6078468491574669682}
   - component: {fileID: 2533400731842270868}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: EnemySpirte
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,7 +96,8 @@ GameObject:
   - component: {fileID: 1492568850968444266}
   - component: {fileID: 1593200244535191181}
   - component: {fileID: 4030720825564542837}
-  m_Layer: 0
+  - component: {fileID: 6434208338290421296}
+  m_Layer: 3
   m_Name: EnemyP
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +160,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &4030720825564542837
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -205,3 +206,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.98565674, y: 1.4876966}
   m_EdgeRadius: 0
+--- !u!114 &6434208338290421296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8112788757304991189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 321645dd87b4c1641bdf28227b54e496, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1

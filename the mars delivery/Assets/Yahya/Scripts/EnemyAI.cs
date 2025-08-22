@@ -11,7 +11,6 @@ public class EnemyAI : MonoBehaviour
     public Transform playerTransform;
     [Tooltip("How fast the enemy moves.")]
     public float speed = 3f;
-    private Transform PlayerLocation;
 
     private Rigidbody2D rb;
 
@@ -19,7 +18,12 @@ public class EnemyAI : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        
+        // This is a backup to find the player if we forget to assign it in the Inspector.
+        // It's not the most efficient, but it prevents the game from breaking.
+       
+    }
+    private void Update()
+    {
         if (playerTransform == null)
         {
             // Make sure your player GameObject has the "Player" tag.
@@ -38,16 +42,13 @@ public class EnemyAI : MonoBehaviour
 
     void FixedUpdate()
     {
-        PlayerLocation = playerTransform;
-        // نتأكد إن عندنا هدف نطارده
+        // If we have a target, move towards it.
         if (playerTransform != null)
         {
-            // السطر ده هو مفتاح الحل:
-            // بنعرّف ونحسب متغير الاتجاه "داخل" الدالة نفسها
-            // عشان يتحدث كل مرة يتم استدعاء الدالة فيها
-            Vector2 direction = (PlayerLocation.position - transform.position).normalized;
+            // 1. Calculate the direction from the enemy to the player.
+            Vector2 direction = (playerTransform.position - transform.position).normalized;
 
-            // بنطبق السرعة في الاتجاه الجديد المحدث
+            // 2. Apply velocity to the Rigidbody to move the enemy in that direction.
             rb.velocity = direction * speed;
         }
     }
