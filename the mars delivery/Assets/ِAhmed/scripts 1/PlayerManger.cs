@@ -1,111 +1,137 @@
 using UnityEngine;
 
-// Abdo Coder: PlayerManager with Combat v0.2
-// Added a simple melee attack.
 public class PlayerManager : MonoBehaviour
 {
-    [Header("Movement Settings")]
-    [SerializeField] private float moveSpeed = 5f;
-    [SerializeField] private float acceleration = 20f;
+    [Header("Movement")]
+    [SerializeField] float moveSpeed = 5f;
+    [SerializeField] float acceleration = 25f;
 
-    [Header("Combat Settings")]
-    [SerializeField] private Transform attackPoint; // The point where the attack originates.
-    [SerializeField] private float attackRange = 0.5f; // The radius of the attack.
-    [SerializeField] private LayerMask enemyLayers;    // Which layers to consider as "enemy".
+    [Header("Combat")]
+    [SerializeField] Transform attackPoint;
+    [SerializeField] float attackRange = 0.5f;
+    [SerializeField] LayerMask enemyLayers;
 
-    [Header("Components")]
-    [SerializeField] private Animator animator;
-    private Rigidbody2D rb;
+    [Header("Components (on Visual child)")]
+     Animator animator;
+     SpriteRenderer sprite;
 
-    private Vector2 input;
-    private Vector2 lastMoveDirection = Vector2.down;
+    Rigidbody2D rb;
 
-    private void Start()
+    Vector2 input;
+    Vector2 lastDir = Vector2.down;
+    bool facingLeft;
+
+    void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        if (!animator) animator = GetComponent<Animator>();
-        if (rb == null)
-        {
-            Debug.LogError("Rigidbody2D component not found!");
-            enabled = false;
-        }
+        if (!animator) animator = GetComponentInChildren<Animator>();
+        if (!sprite) sprite = GetComponentInChildren<SpriteRenderer>();
+        if (!rb) { Debug.LogError("Missing Rigidbody2D on root"); enabled = false; }
     }
 
-    private void Update()
+    void Update()
     {
-        HandleInput();
-        UpdateAnimations();
+        ReadInput();
+        //FlipVisual();
+        UpdateAttackPoint();
+        UpdateAnimator();
 
-        // New attack handling in Update for responsiveness
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            Attack();
+            DoAttack();
+            
         }
     }
 
-    private void FixedUpdate()
+    void FixedUpdate()
     {
-        MovePlayer();
-    }
-
-    private void HandleInput()
-    {
-        input.x = Input.GetAxisRaw("Horizontal");
-        input.y = Input.GetAxisRaw("Vertical");
-        input.Normalize();
-
-        if (input != Vector2.zero)
-            lastMoveDirection = input;
-
-        // We moved the attack input out of here to use GetKeyDown for a single attack per press.
-        animator.SetBool("pick_up", Input.GetKey(KeyCode.E));
-    }
-
-    private void MovePlayer()
-    {
+        // Smooth acceleration; switch to rb.velocity = input * moveSpeed for snappier controls
         rb.velocity = Vector2.Lerp(rb.velocity, input * moveSpeed, acceleration * Time.fixedDeltaTime);
     }
 
-    // --- NEW COMBAT FUNCTION ---
-    private void Attack()
+    void ReadInput()
     {
-        // Trigger attack animation
-        animator.SetTrigger("attack"); // Use a Trigger for one-shot animations like attacking.
+        input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        if (input.sqrMagnitude > 0.0001f)
+            lastDir = input.normalized;
+    }
 
-        // Detect enemies in range of attack
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers);
+    void FlipVisual()
+    {
+        if (!sprite) return;
 
-        // Damage them
-        foreach (Collider2D enemy in hitEnemies)
+        // Update facing when there's horizontal input
+        if (Mathf.Abs(input.x) > 0.001f)
+            facingLeft = input.x < 0f;
+
+        // Flip only the sprite (not the Rigidbody root)
+        sprite.flipX = facingLeft;
+    }
+
+    void UpdateAttackPoint()
+    {
+        if (!attackPoint) return;
+
+        if (input.sqrMagnitude > 0.0001f)
         {
-            Debug.Log("We hit " + enemy.name);
-            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
-            if (enemyHealth != null)
-            {
-                enemyHealth.TakeDamage(1); // Deal 1 damage
-            }
+            // Lock to dominant axis (clean 4-direction attacks)
+            Vector2 d = Dominant(lastDir);
+            attackPoint.localPosition = d * 0.5f;
         }
     }
 
-    // This is for drawing a visual representation of the attack range in the editor.
-    private void OnDrawGizmosSelected()
+    static Vector2 Dominant(Vector2 v)
     {
-        if (attackPoint == null)
-            return;
-
-        Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+        return Mathf.Abs(v.x) >= Mathf.Abs(v.y)
+            ? new Vector2(Mathf.Sign(v.x), 0f)
+            : new Vector2(0f, Mathf.Sign(v.y));
     }
-    // --- END OF NEW CODE ---
 
-    private void UpdateAnimations()
+    void DoAttack()
     {
-        Vector2 currentVelocity = rb.velocity;
-        animator.SetFloat("walk_x", currentVelocity.normalized.x);
-        animator.SetFloat("walk_y", currentVelocity.normalized.y);
-        animator.SetFloat("idle_x", lastMoveDirection.x);
-        animator.SetFloat("idle_y", lastMoveDirection.y);
-        animator.SetFloat("attack_x", lastMoveDirection.x);
-        animator.SetFloat("attack_y", lastMoveDirection.y);
-        animator.SetFloat("magnitude", currentVelocity.magnitude / moveSpeed);
+        animator?.SetTrigger("attack");
+
+        if (!attackPoint) return;
+        foreach (var hit in Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers))
+        {
+            hit.GetComponent<EnemyHealth>()?.TakeDamage(1);
+        }
+       
+    }
+
+    // Call this via an Animation Event at the last frame of the attack animation
+    public void EndAttack()
+    {
+        animator?.ResetTrigger("attack");
+    }
+
+    void UpdateAnimator()
+    {
+        if (!animator) return;
+
+        Vector2 vel = rb.velocity;
+        Vector2 nvel = vel.sqrMagnitude > 0.001f ? vel.normalized : Vector2.zero;
+
+        // Update last direction only if we're moving
+        if (nvel != Vector2.zero)
+        {
+            lastDir = nvel;
+        }
+
+        animator.SetFloat("walk_x", nvel.x);
+        animator.SetFloat("walk_y", nvel.y);
+
+        animator.SetFloat("idle_x", lastDir.x);
+        animator.SetFloat("idle_y", lastDir.y);
+        animator.SetFloat("attack_x", lastDir.x);
+        animator.SetFloat("attack_y", lastDir.y);
+
+        animator.SetFloat("magnitude", vel.magnitude / Mathf.Max(0.0001f, moveSpeed));
+    }
+
+
+    void OnDrawGizmosSelected()
+    {
+        if (attackPoint) Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 }
