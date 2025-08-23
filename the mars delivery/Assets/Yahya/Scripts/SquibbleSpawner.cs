@@ -4,7 +4,7 @@ using UnityEngine.UI;
 using TMPro;
 public class SquibbleSpawner : MonoBehaviour
 {
-    int num = 1;
+    int num;
     // The UI prefab you want to instantiate (e.g., a Button, Image, or Text)
     public GameObject SquibbleUIPrefab;
 
@@ -15,23 +15,9 @@ public class SquibbleSpawner : MonoBehaviour
     private Vector3 SquibbleInGamePosition;
 
     public GameObject TextDisplay;
-    private EventBus eventBus;
-    void Awake()
-{
-    eventBus = FindObjectOfType<EventBus>();
-}
-    void OnEnable()
-    {
-        eventBus.CallSpawnSquibble += SpawnSquibbles;
-        eventBus.CallSpawnSquibble += SpawnSquibblesInGame;
-    }
-    void OnDisable()
-    {
-        eventBus.CallSpawnSquibble -= SpawnSquibbles;
-        eventBus.CallSpawnSquibble -= SpawnSquibblesInGame;
-    }
-
+   
     public int Amount;
+
 
     public void SpawnSquibbles()
     {
@@ -67,7 +53,7 @@ public class SquibbleSpawner : MonoBehaviour
                 GameObject newUIObject = Instantiate(SquibbleInGame, SquibbleInGamePosition, Quaternion.identity);
 
                 // Change the text in this specific spawned object
-                newUIObject.GetComponentInChildren<TextMeshProUGUI>().text = num.ToString();
+               
                 num++;
             } 
         }
