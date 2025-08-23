@@ -20,7 +20,7 @@ public class EnemyAI : MonoBehaviour
 
         // This is a backup to find the player if we forget to assign it in the Inspector.
         // It's not the most efficient, but it prevents the game from breaking.
-       
+
     }
     private void Update()
     {
@@ -47,7 +47,6 @@ public class EnemyAI : MonoBehaviour
         {
             // 1. Calculate the direction from the enemy to the player.
             Vector2 direction = (playerTransform.position - transform.position).normalized;
-
             // 2. Apply velocity to the Rigidbody to move the enemy in that direction.
             rb.velocity = direction * speed;
         }

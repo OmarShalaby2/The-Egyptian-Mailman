@@ -88,7 +88,7 @@ public class PlayerManager : MonoBehaviour
         if (!attackPoint) return;
         foreach (var hit in Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers))
         {
-            hit.GetComponent<EnemyHealth>()?.TakeDamage(1);
+            hit.GetComponent<EnemyBehaviour>()?.TakeDamage(1);
         }
        
     }
@@ -138,6 +138,4 @@ public class PlayerManager : MonoBehaviour
             uimanger.UpdateSquibblesText(SquibbleAmount);
         }
     }
-
-
 }
