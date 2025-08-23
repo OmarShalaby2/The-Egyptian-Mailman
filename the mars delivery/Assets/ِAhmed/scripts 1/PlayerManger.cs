@@ -16,15 +16,13 @@ public class PlayerManager : MonoBehaviour
      SpriteRenderer sprite;
     [Header("health")]
     [SerializeField] float Health;
-    public PlayerManager (float health)
-    {
-        health = Health;
-    }
     Rigidbody2D rb;
-
     Vector2 input;
     Vector2 lastDir = Vector2.down;
-    bool facingLeft;
+    public int SquibbleAmount;
+    public UIManger uimanger;
+
+
 
 
     void Awake()
@@ -33,6 +31,7 @@ public class PlayerManager : MonoBehaviour
         if (!animator) animator = GetComponentInChildren<Animator>();
         if (!sprite) sprite = GetComponentInChildren<SpriteRenderer>();
         if (!rb) { Debug.LogError("Missing Rigidbody2D on root"); enabled = false; }
+        if (!uimanger) uimanger = GetComponentInChildren<UIManger>();
     }
 
     void Update()
@@ -129,12 +128,14 @@ public class PlayerManager : MonoBehaviour
     {
         if (attackPoint) Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Squibble"))
+        if (collision.gameObject.CompareTag("Collectables"))
         {
             Destroy(collision.gameObject);
+            Debug.Log("squibble Added!");
+            SquibbleAmount++;
+            uimanger.UpdateSquibblesText(SquibbleAmount);
         }
     }
 }
