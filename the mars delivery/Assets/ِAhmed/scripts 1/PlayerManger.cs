@@ -89,7 +89,7 @@ public class PlayerManager : MonoBehaviour
         if (!attackPoint) return;
         foreach (var hit in Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers))
         {
-            hit.GetComponent<EnemyHealth>()?.TakeDamage(1);
+            hit.GetComponent<EnemyBehaviour>()?.TakeDamage(1);
         }
        
     }
@@ -128,5 +128,13 @@ public class PlayerManager : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         if (attackPoint) Gizmos.DrawWireSphere(attackPoint.position, attackRange);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Squibble"))
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }
