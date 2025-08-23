@@ -134,7 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 321645dd87b4c1641bdf28227b54e496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Squibble: {fileID: 3221392667231033546, guid: 364f6a57c32282146a700af23a0a5882, type: 3}
+  KnockBackForce: 100
+  Squibble: {fileID: 6433101166524989468, guid: cc9c12992e41bcb41a4c1125689fa6ad, type: 3}
 --- !u!212 &6078244531652081886
 SpriteRenderer:
   m_ObjectHideFlags: 0

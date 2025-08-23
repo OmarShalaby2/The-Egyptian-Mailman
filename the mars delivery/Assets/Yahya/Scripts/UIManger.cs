@@ -8,7 +8,7 @@ public class UIManger : MonoBehaviour
 {
     public PlayerManager PlayerManager;
     public Image HealthSlider;
-    float CurrentHealth = 100;
+    private float CurrentHealth = 100;
     public TextMeshProUGUI Squibbles_Text;
     public SquibbleSpawner squibbleSpawner;
 

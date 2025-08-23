@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
@@ -89,6 +90,13 @@ public class PlayerManager : MonoBehaviour
         foreach (var hit in Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers))
         {
             hit.GetComponent<EnemyBehaviour>()?.TakeDamage(1);
+            Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
+            if (rb != null)
+            {
+                Vector2 KnockbackDirection = (hit.transform.position - transform.position).normalized;
+
+                StartCoroutine(ApplyKnockback(rb, KnockbackDirection, 0.3f, 150f));
+            }
         }
        
     }
@@ -128,6 +136,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (attackPoint) Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Collectables"))
@@ -136,6 +145,18 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("squibble Added!");
             SquibbleAmount++;
             uimanger.UpdateSquibblesText(SquibbleAmount);
+        }
+    }
+
+    IEnumerator ApplyKnockback(Rigidbody2D rb, Vector2 direction, float duration, float force)
+    {
+        float timer = 0f;
+
+        while (timer < duration)
+        {
+            rb.AddForce(direction * force, ForceMode2D.Force);
+            timer += Time.deltaTime;
+            yield return null;
         }
     }
 }
