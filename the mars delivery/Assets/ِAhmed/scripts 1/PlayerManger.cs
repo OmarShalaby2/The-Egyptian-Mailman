@@ -154,6 +154,7 @@ public class PlayerManager : MonoBehaviour
 
         while (timer < duration)
         {
+            if (rb == null) yield break;
             rb.AddForce(direction * force, ForceMode2D.Force);
             timer += Time.deltaTime;
             yield return null;
