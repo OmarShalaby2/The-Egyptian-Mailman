@@ -14,12 +14,18 @@ public class PlayerManager : MonoBehaviour
     [Header("Components (on Visual child)")]
      Animator animator;
      SpriteRenderer sprite;
-
+    [Header("health")]
+    [SerializeField] float Health;
+    public PlayerManager (float health)
+    {
+        health = Health;
+    }
     Rigidbody2D rb;
 
     Vector2 input;
     Vector2 lastDir = Vector2.down;
     bool facingLeft;
+
 
     void Awake()
     {
