@@ -133,7 +133,7 @@ public class PlayerManager : MonoBehaviour
     //    {
     //        Destroy(collision.gameObject);
     //        Debug.Log("Squibble Added!");
-    //        squibbleSpawner.SpawnSquibbles(); // ✅ only spawner tracks the count now
+    //        squibbleSpawner.SpawnSquibbles(); 
     //    }
     //    else if (collision.gameObject.CompareTag("HotDog"))
     //    {

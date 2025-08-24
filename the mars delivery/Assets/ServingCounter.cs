@@ -6,9 +6,9 @@ public class ServingCounter : MonoBehaviour
     {
         if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E))
         {
-            if (Inventory.Instance.dishes > 0)
+            if (Inventory.Instance.CookedHotDogs > 0)
             {
-                Inventory.Instance.dishes--;
+                Inventory.Instance.CookedHotDogs--;
                 Inventory.Instance.AddSquibbles(5);
             }
         }

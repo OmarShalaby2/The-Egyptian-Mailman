@@ -16,48 +16,48 @@ public class SquibbleSpawner : MonoBehaviour
     private int squibbleCount = 0;
     private int hotdogCount = 0;
 
-    public void SpawnSquibbles()
-    {
-        if (SquibbleUIPrefab != null && UIRootParent != null)
-        {
-            for (int i = 0; i < Amount; i++)
-            {
-                Instantiate(SquibbleUIPrefab, UIRootParent);
-                squibbleCount++;
-            }
-            UpdateUI();
-        }
-    }
+    //public void SpawnSquibbles()
+    //{
+    //    if (SquibbleUIPrefab != null && UIRootParent != null)
+    //    {
+    //        for (int i = 0; i < Amount; i++)
+    //        {
+    //            Instantiate(SquibbleUIPrefab, UIRootParent);
+    //            squibbleCount++;
+    //        }
+    //        UpdateUI();
+    //    }
+    //}
 
-    public void SpawnHotDog()
-    {
-        if (HotDogUIPrefab != null && UIRootParent != null)
-        {
-            for (int i = 0; i < Amount; i++)
-            {
-                Instantiate(HotDogUIPrefab, UIRootParent);
-                hotdogCount++;
-            }
-            UpdateUI();
-        }
-    }
+    //public void SpawnHotDog()
+    //{
+    //    if (HotDogUIPrefab != null && UIRootParent != null)
+    //    {
+    //        for (int i = 0; i < Amount; i++)
+    //        {
+    //            Instantiate(HotDogUIPrefab, UIRootParent);
+    //            hotdogCount++;
+    //        }
+    //        UpdateUI();
+    //    }
+    //}
 
-    public void SpawnSquibblesInGame()
-    {
-        float x = Random.Range(0, Screen.width);
-        float y = Random.Range(0, Screen.height);
-        Vector3 spawnPos = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 10f));
+    //public void SpawnSquibblesInGame()
+    //{
+    //    float x = Random.Range(0, Screen.width);
+    //    float y = Random.Range(0, Screen.height);
+    //    Vector3 spawnPos = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 10f));
 
-        if (SquibbleInGame != null)
-        {
-            for (int i = 0; i < Amount; i++)
-            {
-                Instantiate(SquibbleInGame, spawnPos, Quaternion.identity);
-                squibbleCount++;
-            }
-            UpdateUI();
-        }
-    }
+    //    if (SquibbleInGame != null)
+    //    {
+    //        for (int i = 0; i < Amount; i++)
+    //        {
+    //            Instantiate(SquibbleInGame, spawnPos, Quaternion.identity);
+    //            squibbleCount++;
+    //        }
+    //        UpdateUI();
+    //    }
+    //}
 
     public bool SpendSquibble(int amount)
     {
@@ -65,7 +65,7 @@ public class SquibbleSpawner : MonoBehaviour
         {
             squibbleCount -= amount;
             RemoveUIIcons(amount, SquibbleUIPrefab);
-            UpdateUI();
+            //UpdateUI();
             return true;
         }
         return false;
@@ -77,7 +77,7 @@ public class SquibbleSpawner : MonoBehaviour
         {
             hotdogCount -= amount;
             RemoveUIIcons(amount, HotDogUIPrefab);
-            UpdateUI();
+            //UpdateUI();
             return true;
         }
         return false;
@@ -97,15 +97,15 @@ public class SquibbleSpawner : MonoBehaviour
         }
     }
 
-    private void UpdateUI()
-    {
-        if (squibbleText != null)
-            squibbleText.text = $"Squibbles: {squibbleCount}";
-        if (hotdogText != null)
-            hotdogText.text = $"HotDogs: {hotdogCount}";
-    }
+    //private void UpdateUI()
+    //{
+    //    if (squibbleText != null)
+    //        squibbleText.text = $"Squibbles: {squibbleCount}";
+    //    if (hotdogText != null)
+    //        hotdogText.text = $"HotDogs: {hotdogCount}";
+    //}
 
-    // ✅ Expose counts so UIManager can read
-    public int GetSquibbleCount() => squibbleCount;
-    public int GetHotDogCount() => hotdogCount;
+    //// ✅ Expose counts so UIManager can read
+    //public int GetSquibbleCount() => squibbleCount;
+    //public int GetHotDogCount() => hotdogCount;
 }

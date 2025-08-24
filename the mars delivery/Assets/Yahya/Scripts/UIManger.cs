@@ -7,8 +7,8 @@ public class UIManger : MonoBehaviour
     public PlayerManager PlayerManager;
     public Image HealthSlider;
     private float CurrentHealth = 100;
-    public TextMeshProUGUI Squibbles_Text;
-    public SquibbleSpawner squibbleSpawner;
+    //public TextMeshProUGUI Squibbles_Text;
+    //public SquibbleSpawner squibbleSpawner;
 
     private void Update()
     {
@@ -33,8 +33,8 @@ public class UIManger : MonoBehaviour
     }
 
     // ✅ Now just updates UI text using SquibbleSpawner’s count
-    public void UpdateSquibblesText()
-    {
-        Squibbles_Text.text = $"Squibbles: {squibbleSpawner.GetSquibbleCount()}";
-    }
+    //public void UpdateSquibblesText()
+    //{
+    //    Squibbles_Text.text = $"Squibbles: {squibbleSpawner.GetSquibbleCount()}";
+    //}
 }
