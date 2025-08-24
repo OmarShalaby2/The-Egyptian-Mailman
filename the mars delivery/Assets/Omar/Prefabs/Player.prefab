@@ -243,10 +243,13 @@ MonoBehaviour:
   moveSpeed: 5
   acceleration: 20
   attackPoint: {fileID: 8086832115560393430}
-  attackRange: 0.5
+  attackRange: 1.2
   enemyLayers:
     serializedVersion: 2
     m_Bits: 8
+  Health: 100
+  uimanger: {fileID: 0}
+  squibbleSpawner: {fileID: 0}
 --- !u!1 &8713587152127696176
 GameObject:
   m_ObjectHideFlags: 0
