@@ -4,7 +4,7 @@ using UnityEngine;
 public class PlayerManager : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] float moveSpeed = 5f;
+    [SerializeField]public float moveSpeed = 5f;
     [SerializeField] float acceleration = 25f;
 
     [Header("Combat")]
@@ -127,20 +127,20 @@ public class PlayerManager : MonoBehaviour
         if (attackPoint) Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Collectables"))
-        {
-            Destroy(collision.gameObject);
-            Debug.Log("Squibble Added!");
-            squibbleSpawner.SpawnSquibbles(); // ✅ only spawner tracks the count now
-        }
-        else if (collision.gameObject.CompareTag("HotDog"))
-        {
-            Destroy(collision.gameObject);
-            squibbleSpawner.SpawnHotDog();
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Collectables"))
+    //    {
+    //        Destroy(collision.gameObject);
+    //        Debug.Log("Squibble Added!");
+    //        squibbleSpawner.SpawnSquibbles(); // ✅ only spawner tracks the count now
+    //    }
+    //    else if (collision.gameObject.CompareTag("HotDog"))
+    //    {
+    //        Destroy(collision.gameObject);
+    //        squibbleSpawner.SpawnHotDog();
+    //    }
+    //}
 
     IEnumerator ApplyKnockback(Rigidbody2D rb, Vector2 direction, float duration, float force)
     {
