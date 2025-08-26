@@ -1,10 +1,10 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
     [Header("Movement")]
-    [SerializeField] float moveSpeed = 5f;
+    [SerializeField]public float moveSpeed = 5f;
     [SerializeField] float acceleration = 25f;
 
     [Header("Combat")]
@@ -13,18 +13,17 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] LayerMask enemyLayers;
 
     [Header("Components (on Visual child)")]
-     Animator animator;
-     SpriteRenderer sprite;
+    Animator animator;
+    SpriteRenderer sprite;
+
     [Header("health")]
     [SerializeField] float Health;
     Rigidbody2D rb;
     Vector2 input;
     Vector2 lastDir = Vector2.down;
-    public int SquibbleAmount;
+
     public UIManger uimanger;
-
-
-
+    public SquibbleSpawner squibbleSpawner;
 
     void Awake()
     {
@@ -33,25 +32,23 @@ public class PlayerManager : MonoBehaviour
         if (!sprite) sprite = GetComponentInChildren<SpriteRenderer>();
         if (!rb) { Debug.LogError("Missing Rigidbody2D on root"); enabled = false; }
         if (!uimanger) uimanger = GetComponentInChildren<UIManger>();
+        if (!squibbleSpawner) squibbleSpawner = FindObjectOfType<SquibbleSpawner>();
     }
 
     void Update()
     {
         ReadInput();
-     
         UpdateAttackPoint();
         UpdateAnimator();
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             DoAttack();
-            
         }
     }
 
     void FixedUpdate()
     {
-        // Smooth acceleration; switch to rb.velocity = input * moveSpeed for snappier controls
         rb.velocity = Vector2.Lerp(rb.velocity, input * moveSpeed, acceleration * Time.fixedDeltaTime);
     }
 
@@ -62,14 +59,12 @@ public class PlayerManager : MonoBehaviour
             lastDir = input.normalized;
     }
 
-    
     void UpdateAttackPoint()
     {
         if (!attackPoint) return;
 
         if (input.sqrMagnitude > 0.0001f)
         {
-            // Lock to dominant axis (clean 4-direction attacks)
             Vector2 d = Dominant(lastDir);
             attackPoint.localPosition = d * 0.5f;
         }
@@ -94,14 +89,11 @@ public class PlayerManager : MonoBehaviour
             if (rb != null)
             {
                 Vector2 KnockbackDirection = (hit.transform.position - transform.position).normalized;
-
                 StartCoroutine(ApplyKnockback(rb, KnockbackDirection, 0.3f, 150f));
             }
         }
-       
     }
 
-    // Call this via an Animation Event at the last frame of the attack animation
     public void EndAttack()
     {
         animator?.ResetTrigger("attack");
@@ -114,7 +106,6 @@ public class PlayerManager : MonoBehaviour
         Vector2 vel = rb.velocity;
         Vector2 nvel = vel.sqrMagnitude > 0.001f ? vel.normalized : Vector2.zero;
 
-        // Update last direction only if we're moving
         if (nvel != Vector2.zero)
         {
             lastDir = nvel;
@@ -131,22 +122,25 @@ public class PlayerManager : MonoBehaviour
         animator.SetFloat("magnitude", vel.magnitude / Mathf.Max(0.0001f, moveSpeed));
     }
 
-
     void OnDrawGizmosSelected()
     {
         if (attackPoint) Gizmos.DrawWireSphere(attackPoint.position, attackRange);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Collectables"))
-        {
-            Destroy(collision.gameObject);
-            Debug.Log("squibble Added!");
-            SquibbleAmount++;
-            uimanger.UpdateSquibblesText(SquibbleAmount);
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Collectables"))
+    //    {
+    //        Destroy(collision.gameObject);
+    //        Debug.Log("Squibble Added!");
+    //        squibbleSpawner.SpawnSquibbles(); 
+    //    }
+    //    else if (collision.gameObject.CompareTag("HotDog"))
+    //    {
+    //        Destroy(collision.gameObject);
+    //        squibbleSpawner.SpawnHotDog();
+    //    }
+    //}
 
     IEnumerator ApplyKnockback(Rigidbody2D rb, Vector2 direction, float duration, float force)
     {
@@ -154,6 +148,7 @@ public class PlayerManager : MonoBehaviour
 
         while (timer < duration)
         {
+            if (rb == null) yield break;
             rb.AddForce(direction * force, ForceMode2D.Force);
             timer += Time.deltaTime;
             yield return null;

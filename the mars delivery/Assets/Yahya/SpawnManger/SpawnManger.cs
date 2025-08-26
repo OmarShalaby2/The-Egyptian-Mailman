@@ -9,7 +9,8 @@ public class SpawnManager : MonoBehaviour
     [Header("Spawner Settings")]
     [SerializeField] private GameObject enemyPrefab; // The enemy prefab we created.
     [SerializeField] private Transform spawnPoint;   // The empty GameObject that marks the spawn location.
-
+    [SerializeField] private float spawnDelay = 2f; // Delay before spawning the enemy (not used in this simple version).
+    [SerializeField] private int maxEnemies = 5;
     void Start()
     {
         // Simple check to avoid errors if someone forgot to assign the prefabs.
@@ -22,11 +23,27 @@ public class SpawnManager : MonoBehaviour
             Debug.LogError("Enemy Prefab or Spawn Point is not assigned in the SpawnManager!");
         }
     }
+    private void Update()
+    {
+        // For testing: Press 'S' to spawn an enemy.
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            SpawnEnemy();
+        }
+    }
 
     private void SpawnEnemy()
     {
-        // The core of this script: create an instance of the enemy prefab at the spawn point's position.
-        Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
-        Debug.Log("An enemy has been spawned. Let the chase begin.");
+        
+            
+            Instantiate(enemyPrefab, spawnPoint.position, Quaternion.identity);
+            Debug.Log("An enemy has been spawned. Let the chase begin.");
+            StartCoroutine(WaitAndSpawn());
+       
+      
+    }
+    private System.Collections.IEnumerator WaitAndSpawn()
+    {
+        yield return new WaitForSeconds(spawnDelay);
     }
 }
