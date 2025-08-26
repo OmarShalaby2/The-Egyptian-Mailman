@@ -22,6 +22,7 @@ public class UIManger : MonoBehaviour
         if (HealthSlider.fillAmount <= 0) return;
         CurrentHealth -= damage;
         HealthSlider.fillAmount = CurrentHealth / 100f;
+        PlayerManager.Flash();
     }
 
     public void HealAmount(int heal)

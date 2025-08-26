@@ -151,7 +151,21 @@ public class PlayerManager : MonoBehaviour
             if (rb == null) yield break;
             rb.AddForce(direction * force, ForceMode2D.Force);
             timer += Time.deltaTime;
+            sprite.color = new Color(1f, 0f, 0f); // RGB values from 0 to 1
             yield return null;
         }
     }
+    public void Flash()
+    {
+        StartCoroutine(FlashRoutine());
+    }
+
+    private IEnumerator FlashRoutine()
+    {
+        Color originalColor = sprite.color;
+        sprite.color = Color.red; // or new Color(1f, 0f, 0f)
+        yield return new WaitForSeconds(0.5f);
+        sprite.color = originalColor;
+    }
+
 }
