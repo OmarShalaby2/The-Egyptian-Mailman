@@ -11,4 +11,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Main Scenes/Empty scene.unity
     guid: 5dbe986581f7c3d44b62e7321d49e347
+  - enabled: 1
+    path: "Assets/\u0650Ahmed/Scenes/Test Scenes/martian_town.unity"
+    guid: e6b6d8eedb500ae46bd1bb64059d60cb
+  - enabled: 1
+    path: "Assets/\u0650Ahmed/Scenes/Test Scenes/crash.unity"
+    guid: 79711b5e0b2df86479bfd5438f97aaa6
+  - enabled: 1
+    path: "Assets/\u0650Ahmed/Scenes/Test Scenes/pole.unity"
+    guid: 1d305cbef018b724d86279184270d247
+  - enabled: 1
+    path: "Assets/\u0650Ahmed/Scenes/Test Scenes/resturant.unity"
+    guid: b85b49977cd4f734ba8d4352bdf47ce7
+  - enabled: 1
+    path: "Assets/\u0650Ahmed/Scenes/Test Scenes/shop.unity"
+    guid: 0701e36128ef8474ca24d63b4c751b04
   m_configObjects: {}
