@@ -8,6 +8,7 @@ using UnityEngine.UIElements;
 public class SceneChanger : MonoBehaviour
 {
     private static SceneChanger instance;
+    public GameObject boundries;
 
     void Awake()
     {
