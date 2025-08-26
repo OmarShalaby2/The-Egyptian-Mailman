@@ -1,64 +1,111 @@
-using UnityEngine;
-using System.Collections; // You can keep this if you want to use coroutines
-using UnityEngine.UI;
+﻿using UnityEngine;
 using TMPro;
+
 public class SquibbleSpawner : MonoBehaviour
 {
-    int num;
-    // The UI prefab you want to instantiate (e.g., a Button, Image, or Text)
     public GameObject SquibbleUIPrefab;
-
-    // A reference to the parent UI element, like the Canvas or a Panel.
+    public GameObject HotDogUIPrefab;
     public Transform UIRootParent;
-
     public GameObject SquibbleInGame;
-    private Vector3 SquibbleInGamePosition;
 
-    public GameObject TextDisplay;
-   
-    public int Amount;
+    public int Amount = 1;
 
+    public TMP_Text squibbleText;
+    public TMP_Text hotdogText;
 
-    public void SpawnSquibbles()
+    private int squibbleCount = 0;
+    private int hotdogCount = 0;
+
+    //public void SpawnSquibbles()
+    //{
+    //    if (SquibbleUIPrefab != null && UIRootParent != null)
+    //    {
+    //        for (int i = 0; i < Amount; i++)
+    //        {
+    //            Instantiate(SquibbleUIPrefab, UIRootParent);
+    //            squibbleCount++;
+    //        }
+    //        UpdateUI();
+    //    }
+    //}
+
+    //public void SpawnHotDog()
+    //{
+    //    if (HotDogUIPrefab != null && UIRootParent != null)
+    //    {
+    //        for (int i = 0; i < Amount; i++)
+    //        {
+    //            Instantiate(HotDogUIPrefab, UIRootParent);
+    //            hotdogCount++;
+    //        }
+    //        UpdateUI();
+    //    }
+    //}
+
+    //public void SpawnSquibblesInGame()
+    //{
+    //    float x = Random.Range(0, Screen.width);
+    //    float y = Random.Range(0, Screen.height);
+    //    Vector3 spawnPos = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 10f));
+
+    //    if (SquibbleInGame != null)
+    //    {
+    //        for (int i = 0; i < Amount; i++)
+    //        {
+    //            Instantiate(SquibbleInGame, spawnPos, Quaternion.identity);
+    //            squibbleCount++;
+    //        }
+    //        UpdateUI();
+    //    }
+    //}
+
+    public bool SpendSquibble(int amount)
     {
-        // Check if the prefab and parent are assigned to prevent errors
-        if (SquibbleUIPrefab != null && UIRootParent != null)
+        if (squibbleCount >= amount)
         {
-            // Use a loop to create the specified amount of UI objects
-            for (int i = 0; i < Amount; i++)
-            {
-                // Instantiate the UI prefab and set its parent to the UIRootParent
-                GameObject newUIObject = Instantiate(SquibbleUIPrefab, UIRootParent);
+            squibbleCount -= amount;
+            RemoveUIIcons(amount, SquibbleUIPrefab);
+            //UpdateUI();
+            return true;
+        }
+        return false;
+    }
 
-                // You can also adjust the position, scale, or other properties here
-                // For example, to set the local position to (0,0,0)
-                newUIObject.transform.localPosition = Vector3.zero;
+    public bool SpendHotDog(int amount)
+    {
+        if (hotdogCount >= amount)
+        {
+            hotdogCount -= amount;
+            RemoveUIIcons(amount, HotDogUIPrefab);
+            //UpdateUI();
+            return true;
+        }
+        return false;
+    }
+
+    private void RemoveUIIcons(int amount, GameObject prefabType)
+    {
+        int removed = 0;
+        for (int i = 0; i < UIRootParent.childCount && removed < amount; i++)
+        {
+            GameObject child = UIRootParent.GetChild(i).gameObject;
+            if (child.name.Contains(prefabType.name))
+            {
+                Destroy(child);
+                removed++;
             }
         }
     }
-    public void SpawnSquibblesInGame()
-    {
 
-        float x = Random.Range(0, Screen.width);
-        float y = Random.Range(0, Screen.height);
-        SquibbleInGamePosition = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 10f));
+    //private void UpdateUI()
+    //{
+    //    if (squibbleText != null)
+    //        squibbleText.text = $"Squibbles: {squibbleCount}";
+    //    if (hotdogText != null)
+    //        hotdogText.text = $"HotDogs: {hotdogCount}";
+    //}
 
-
-        // Check if the prefab and parent are assigned to prevent errors
-        if (SquibbleInGame != null && SquibbleInGamePosition != null)
-        {
-            // Use a loop to create the specified amount of UI objects
-            for (int i = 0; i < Amount; i++)
-            {
-                GameObject newUIObject = Instantiate(SquibbleInGame, SquibbleInGamePosition, Quaternion.identity);
-
-                // Change the text in this specific spawned object
-               
-                num++;
-            } 
-        }
-    }
-
-
+    //// ✅ Expose counts so UIManager can read
+    //public int GetSquibbleCount() => squibbleCount;
+    //public int GetHotDogCount() => hotdogCount;
 }
-

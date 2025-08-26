@@ -50,7 +50,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 0}
   speed: 3
-  IsStunned: 0
 --- !u!50 &1593200244535191181
 Rigidbody2D:
   serializedVersion: 4
@@ -135,10 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 321645dd87b4c1641bdf28227b54e496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1
-  rb: {fileID: 1593200244535191181}
-  player: {fileID: 764299908837558104, guid: 773c0c88e2e3ab442b4f4bc9c2c4aa91, type: 3}
-  enemyAI: {fileID: 0}
+  KnockBackForce: 200
+  Squibble: {fileID: 6053651631486347318, guid: ad7be8b397de0e64b82fc9a121308687, type: 3}
 --- !u!212 &6078244531652081886
 SpriteRenderer:
   m_ObjectHideFlags: 0
