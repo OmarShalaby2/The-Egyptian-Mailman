@@ -8,7 +8,7 @@ public class UIManger : MonoBehaviour
 {
     public PlayerManager PlayerManager;
     public Image HealthSlider;
-    private float CurrentHealth = 100;
+    private float CurrentHealth = 1000;
     private CinemachineImpulseSource s;
     [SerializeField] private AudioClip hitSound;  
     public AudioSource audioSource;
@@ -28,7 +28,7 @@ public class UIManger : MonoBehaviour
     {
         if (HealthSlider.fillAmount <= 0) return;
         CurrentHealth -= damage;
-        HealthSlider.fillAmount = CurrentHealth / 100f;
+        HealthSlider.fillAmount = CurrentHealth / 1000f;
         cameraShakeManger.Instance.cameraShake(s);
         if (audioSource != null && hitSound != null)
         {
