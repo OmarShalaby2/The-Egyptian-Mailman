@@ -3514,7 +3514,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SquibbleUIPrefab: {fileID: 7648718640908772525, guid: 90073912c0cd0004dbae52e91d6872bd, type: 3}
   HotDogUIPrefab: {fileID: 2050926773318111421, guid: fa2cd45d288465b48937048f2c4c7929, type: 3}
-  UIRootParent: {fileID: 2251092871899738546}
+  UIRootParent: {fileID: 0}
   SquibbleInGame: {fileID: 3564459064190177707}
   Amount: 1
   squibbleText: {fileID: 3886269569711616261}
