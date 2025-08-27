@@ -7,10 +7,11 @@ using UnityEngine;
 // This script manages the enemy's health. Simple and direct.
 public class EnemyBehaviour : MonoBehaviour
 {
-    private int health = 5;
+    public int health = 1;
     [SerializeField] private float KnockBackForce = 300f;
     [SerializeField] private GameObject Squibble;
     private UIManger Manager;
+    public EnemyAI enemyAI;
 
     // This function can be called by other scripts (like the Player's attack)
     // to deal damage to this enemy.
@@ -52,6 +53,7 @@ public class EnemyBehaviour : MonoBehaviour
 
                 StartCoroutine(ApplyKnockback(rb, KnockbackDirection, 0.3f, KnockBackForce));
             }
+
         }
     }
 
@@ -66,5 +68,4 @@ public class EnemyBehaviour : MonoBehaviour
             yield return null;
         }
     }
-
 }

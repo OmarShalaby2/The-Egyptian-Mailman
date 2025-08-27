@@ -40,7 +40,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void followplayer()
     {
         // If we have a target, move towards it.
         if (playerTransform != null)
@@ -50,5 +50,9 @@ public class EnemyAI : MonoBehaviour
             // 2. Apply velocity to the Rigidbody to move the enemy in that direction.
             rb.velocity = direction * speed;
         }
+    }
+    void FixedUpdate()
+    {
+        followplayer();
     }
 }
