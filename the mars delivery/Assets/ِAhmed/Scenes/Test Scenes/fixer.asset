@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 112282ec5f6a6cc409d34f26de119663, type: 3}
+  m_Name: fixer
+  m_EditorClassIdentifier: 
+  npcName: fixer
+  ncpIcon: {fileID: 21300000, guid: 12e16cc52d74f7349b0103da05843e14, type: 3}
+  dialogueLines:
+  - i can help you, boy!
+  - '*REbeq Rebeq*'
+  - the slime lord stole your rokket peice
+  - '*REbeq Rebeq*'
+  - go get it and i will fix them for 99 Squibbles
+  - '*REbeq Rebeq*'
+  typingSpeed: 0.5
+  autoProgressLines: 
+  AutoProgressDelay: 1.5
+  vioceSound: {fileID: 8300000, guid: cd3af25385fd4cd42bcd6d9489e21431, type: 3}
+  voicePitch: 1

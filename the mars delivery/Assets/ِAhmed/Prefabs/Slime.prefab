@@ -122,8 +122,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 321645dd87b4c1641bdf28227b54e496, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 1
   KnockBackForce: 300
-  Squibble: {fileID: 6433101166524989468, guid: cc9c12992e41bcb41a4c1125689fa6ad, type: 3}
+  Squibble: {fileID: 6433101166524989468, guid: e148f25931b4ed44bb3e794e0ce2fa85, type: 3}
+  enemyAI: {fileID: -1536520400494980671}
 --- !u!114 &-1536520400494980671
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c517d605f51908244b983f2e90319fc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerTransform: {fileID: 0}
+  playerTransform: {fileID: 1638574185641435144, guid: c66b4bf1003019741ba3ec3062ea2a4e, type: 3}
   speed: 3
 --- !u!114 &2158990802842352287
 MonoBehaviour:
@@ -152,6 +154,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4421239819944620596}
   animator: {fileID: 8915340117243165131}
+  enemyBehaviour: {fileID: -1159003820464637662}
 --- !u!50 &4421239819944620596
 Rigidbody2D:
   serializedVersion: 4

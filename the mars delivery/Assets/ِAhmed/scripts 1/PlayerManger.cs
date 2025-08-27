@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
+
 public class PlayerManager : MonoBehaviour
 {
     [Header("Movement")]
@@ -22,6 +23,10 @@ public class PlayerManager : MonoBehaviour
     Vector2 input;
     Vector2 lastDir = Vector2.down;
 
+
+
+    Color originalColor;
+    Color ChangedColor = new Color(1, 0, 0);
     public UIManger uimanger;
     public SquibbleSpawner squibbleSpawner;
 
@@ -33,6 +38,7 @@ public class PlayerManager : MonoBehaviour
         if (!rb) { Debug.LogError("Missing Rigidbody2D on root"); enabled = false; }
         if (!uimanger) uimanger = GetComponentInChildren<UIManger>();
         if (!squibbleSpawner) squibbleSpawner = FindObjectOfType<SquibbleSpawner>();
+        originalColor = sprite.color;
     }
 
     void Update()
@@ -84,7 +90,7 @@ public class PlayerManager : MonoBehaviour
         if (!attackPoint) return;
         foreach (var hit in Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers))
         {
-            hit.GetComponent<EnemyBehaviour>()?.TakeDamage(1);
+            hit.GetComponent<EnemyBehaviour>()?.TakeDamage(10);
             Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
             if (rb != null)
             {
@@ -145,15 +151,18 @@ public class PlayerManager : MonoBehaviour
     IEnumerator ApplyKnockback(Rigidbody2D rb, Vector2 direction, float duration, float force)
     {
         float timer = 0f;
-
+       
         while (timer < duration)
         {
+
             if (rb == null) yield break;
             rb.AddForce(direction * force, ForceMode2D.Force);
             timer += Time.deltaTime;
-            sprite.color = new Color(1f, 0f, 0f); // RGB values from 0 to 1
+            
             yield return null;
         }
+       
+        
     }
     public void Flash()
     {
@@ -162,9 +171,13 @@ public class PlayerManager : MonoBehaviour
 
     private IEnumerator FlashRoutine()
     {
-        Color originalColor = sprite.color;
+
         sprite.color = Color.red; // or new Color(1f, 0f, 0f)
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
+
+    }
+   public void flashReset()
+    {
         sprite.color = originalColor;
     }
 

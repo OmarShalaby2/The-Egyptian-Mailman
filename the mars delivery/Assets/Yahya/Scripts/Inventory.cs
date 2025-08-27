@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
-using TMPro; // if you use TextMeshPro
+using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
 
-    public int RawHotDogs, CookedHotDogs,squibbles;
+    public int RawHotDogs, CookedHotDogs, squibbles;
 
     [Header("UI References")]
     public TMP_Text SquibbleT, RawHotDogsT, CookedHotDogsT;
@@ -14,11 +15,43 @@ public class Inventory : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+
+            // Subscribe to sceneLoaded event
+            SceneManager.sceneLoaded += OnSceneLoaded;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     void Start()
     {
-        if (!squibbleSpawner) squibbleSpawner = FindObjectOfType<SquibbleSpawner>();
+        SquibbleT = GameObject.Find("squibbles count")?.GetComponent<TMP_Text>();
+        RawHotDogsT = GameObject.Find("RawHotDogsText")?.GetComponent<TMP_Text>();
+        CookedHotDogsT = GameObject.Find("CookedHotDogsText")?.GetComponent<TMP_Text>();
+
+        RefreshUI();
+    }
+
+    private void OnDestroy()
+    {
+        // Unsubscribe to avoid errors
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Try to find new UI references each time scene loads
+        if (!SquibbleT) SquibbleT = GameObject.Find("SquibbleText")?.GetComponent<TMP_Text>();
+        if (!RawHotDogsT) RawHotDogsT = GameObject.Find("RawHotDogsText")?.GetComponent<TMP_Text>();
+        if (!CookedHotDogsT) CookedHotDogsT = GameObject.Find("CookedHotDogsText")?.GetComponent<TMP_Text>();
+
+        // Refresh after re-hook
+        RefreshUI();
     }
 
     public void Add(PickUp.ResourceType type, int amount)
@@ -34,21 +67,21 @@ public class Inventory : MonoBehaviour
 
     public void SpendForCooking()
     {
-        squibbles -= 2; RawHotDogs -= 1;
+        squibbles -= 2;
+        RawHotDogs -= 1;
         RefreshUI();
     }
 
     private void RefreshUI()
     {
-         SquibbleT.text = $"{squibbles}";
-         RawHotDogsT.text = $"{RawHotDogs}";
-         CookedHotDogsT.text = $"{CookedHotDogs}";
-
-
+        if (SquibbleT) SquibbleT.text = $"{squibbles}";
+        if (RawHotDogsT) RawHotDogsT.text = $"{RawHotDogs}";
+        if (CookedHotDogsT) CookedHotDogsT.text = $"{CookedHotDogs}";
     }
-   public void SellHotDogs()
+
+    public void SellHotDogs()
     {
-        if(CookedHotDogs<=0) return;
+        if (CookedHotDogs <= 0) return;
         CookedHotDogs--;
         squibbles += 5;
         RefreshUI();

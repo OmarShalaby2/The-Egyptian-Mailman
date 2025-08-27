@@ -1,15 +1,22 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Cinemachine;
+
 
 public class UIManger : MonoBehaviour
 {
     public PlayerManager PlayerManager;
     public Image HealthSlider;
     private float CurrentHealth = 100;
-    //public TextMeshProUGUI Squibbles_Text;
-    //public SquibbleSpawner squibbleSpawner;
+    private CinemachineImpulseSource s;
+    [SerializeField] private AudioClip hitSound;  
+    public AudioSource audioSource;
 
+    private void Start()
+    {
+        s = GetComponent<CinemachineImpulseSource>();
+    }
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Q)) TakeDamge(10);
@@ -22,7 +29,11 @@ public class UIManger : MonoBehaviour
         if (HealthSlider.fillAmount <= 0) return;
         CurrentHealth -= damage;
         HealthSlider.fillAmount = CurrentHealth / 100f;
-        PlayerManager.Flash();
+        cameraShakeManger.Instance.cameraShake(s);
+        if (audioSource != null && hitSound != null)
+        {
+            audioSource.PlayOneShot(hitSound);
+        }
     }
 
     public void HealAmount(int heal)
