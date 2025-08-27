@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class main_menu_style_sheet : MonoBehaviour
 {
@@ -21,14 +22,6 @@ public class main_menu_style_sheet : MonoBehaviour
         _button2.RegisterCallback<ClickEvent>(on_play2);
         _button3 = _document.rootVisualElement.Q("level1") as Button;
         _button3.RegisterCallback<ClickEvent>(on_play3);
-        _button4 = _document.rootVisualElement.Q("level2") as Button;
-        _button4.RegisterCallback<ClickEvent>(on_play4);
-        _button5 = _document.rootVisualElement.Q("level3") as Button;
-        _button5.RegisterCallback<ClickEvent>(on_play5);
-        _button6 = _document.rootVisualElement.Q("level4") as Button;
-        _button6.RegisterCallback<ClickEvent>(on_play6);
-        _button7 = _document.rootVisualElement.Q("level5") as Button;
-        _button7.RegisterCallback<ClickEvent>(on_play7);
         _button8 = _document.rootVisualElement.Q("back") as Button;
         _button8.RegisterCallback<ClickEvent>(on_play8);
         _button9 = _document.rootVisualElement.Q("back1") as Button;
@@ -41,10 +34,6 @@ public class main_menu_style_sheet : MonoBehaviour
         _label1 = _document.rootVisualElement.Q("levels") as Label;
         _label2 = _document.rootVisualElement.Q("options_label") as Label;
         _button3.style.display = DisplayStyle.None;
-        _button4.style.display = DisplayStyle.None;
-        _button5.style.display = DisplayStyle.None;
-        _button6.style.display = DisplayStyle.None;
-        _button7.style.display = DisplayStyle.None;
         _button8.style.display = DisplayStyle.None;
         _button9.style.display = DisplayStyle.None;
         _button10.style.display = DisplayStyle.None;
@@ -64,10 +53,6 @@ public class main_menu_style_sheet : MonoBehaviour
         _button1.UnregisterCallback<ClickEvent>(on_play1);
         _button2.UnregisterCallback<ClickEvent>(on_play2);
         _button3.UnregisterCallback<ClickEvent>(on_play3);
-        _button4.UnregisterCallback<ClickEvent>(on_play4);
-        _button5.UnregisterCallback<ClickEvent>(on_play5);
-        _button6.UnregisterCallback<ClickEvent>(on_play6);
-        _button7.UnregisterCallback<ClickEvent>(on_play7);
         _button8.UnregisterCallback<ClickEvent>(on_play8);
         _button9.UnregisterCallback<ClickEvent>(on_play9);
         _button10.UnregisterCallback<ClickEvent>(on_play10);
@@ -83,10 +68,6 @@ public class main_menu_style_sheet : MonoBehaviour
         _button1.style.display = DisplayStyle.None;
         _button2.style.display = DisplayStyle.None;
         _button3.style.display = DisplayStyle.Flex;
-        _button4.style.display = DisplayStyle.Flex;
-        _button5.style.display = DisplayStyle.Flex;
-        _button6.style.display = DisplayStyle.Flex;
-        _button7.style.display = DisplayStyle.Flex;
         _button8.style.display = DisplayStyle.Flex;
         _label.style.display = DisplayStyle.None;
         _label1.style.display = DisplayStyle.Flex;
@@ -106,27 +87,15 @@ public class main_menu_style_sheet : MonoBehaviour
     }
     private void on_play2(ClickEvent click)
     {
-        Debug.Log("you clicked exit button");
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false; // Stops play mode in the editor
+        #else
+            Application.Quit(); // Exits the game in a build
+        #endif
     }
     private void on_play3(ClickEvent click)
     {
-        Debug.Log("you clicked exit button");
-    }
-    private void on_play4(ClickEvent click)
-    {
-        Debug.Log("you clicked exit button");
-    }
-    private void on_play5(ClickEvent click)
-    {
-        Debug.Log("you clicked exit button");
-    }
-    private void on_play6(ClickEvent click)
-    {
-        Debug.Log("you clicked exit button");
-    }
-    private void on_play7(ClickEvent click)
-    {
-        Debug.Log("you clicked exit button");
+        SceneManager.LoadScene("crash");
     }
     private void on_play8(ClickEvent click)
     {
@@ -134,10 +103,6 @@ public class main_menu_style_sheet : MonoBehaviour
         _button1.style.display = DisplayStyle.Flex;
         _button2.style.display = DisplayStyle.Flex;
         _button3.style.display = DisplayStyle.None;
-        _button4.style.display = DisplayStyle.None;
-        _button5.style.display = DisplayStyle.None;
-        _button6.style.display = DisplayStyle.None;
-        _button7.style.display = DisplayStyle.None;
         _button8.style.display = DisplayStyle.None;
         _label.style.display = DisplayStyle.Flex;
         _label1.style.display = DisplayStyle.None;
