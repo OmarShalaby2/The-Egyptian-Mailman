@@ -21,8 +21,8 @@ MonoBehaviour:
   - '*REbeq Rebeq*'
   - go get it and i will fix them for 99 Squibbles
   - '*REbeq Rebeq*'
-  typingSpeed: 0.1
-  autoProgressLines: 010101010101
+  typingSpeed: 0.5
+  autoProgressLines: 
   AutoProgressDelay: 1.5
   vioceSound: {fileID: 8300000, guid: cd3af25385fd4cd42bcd6d9489e21431, type: 3}
   voicePitch: 1

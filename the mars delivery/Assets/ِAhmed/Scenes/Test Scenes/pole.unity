@@ -83344,10 +83344,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5331564330171916253}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -336.696, y: 58.8685, z: 0.06250286}
-  m_LocalScale: {x: 20, y: 20, z: 6.666666}
-  m_ConstrainProportionsScale: 1
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -336.696, y: 58.8685, z: 0.06250297}
+  m_LocalScale: {x: 16.490276, y: 16.490276, z: 5.4967585}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7637749750067084971}
   m_Father: {fileID: 0}
@@ -83574,7 +83574,6 @@ GameObject:
   - component: {fileID: 1648543585864100506}
   - component: {fileID: 7542152481083883769}
   - component: {fileID: 7241817823730342925}
-  - component: {fileID: 7868260050709330647}
   m_Layer: 3
   m_Name: Boss
   m_TagString: Untagged
@@ -83870,24 +83869,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7868260050709330647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5331564330171916253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c25a817375ee4b45ba7d1e74b516c45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  voiceLines:
-  - {fileID: 8300000, guid: 8f6055e5398e45a4fbfc117eb0ae5dba, type: 3}
-  - {fileID: 8300000, guid: 16c388f87d3ef0842a87b32174ecc723, type: 3}
-  - {fileID: 8300000, guid: b07833a012a0fd24a80dc70f7bcd118c, type: 3}
-  minDelay: 2
-  maxDelay: 5
 --- !u!114 &8091571001844022803
 MonoBehaviour:
   m_ObjectHideFlags: 0

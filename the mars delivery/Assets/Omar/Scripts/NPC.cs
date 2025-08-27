@@ -15,23 +15,6 @@ public class NPC : MonoBehaviour
     private int dialogueIndex;
     private bool isTyping, isDialogueActive;
 
-    // --- NEW ---
-    // Reference to the AudioSource component
-    private AudioSource audioSource;
-
-    // --- NEW ---
-    // Use Awake to get references before the game starts
-    private void Awake()
-    {
-        // Get the AudioSource component attached to this GameObject
-        audioSource = GetComponent<AudioSource>();
-        // If one doesn't exist, add it automatically
-        if (audioSource == null)
-        {
-            audioSource = gameObject.AddComponent<AudioSource>();
-        }
-    }
-
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Player") && Input.GetKeyDown(KeyCode.E) && canInteract())
@@ -52,7 +35,7 @@ public class NPC : MonoBehaviour
             return;
         }
 
-        if (isDialogueActive)
+        if(isDialogueActive)
         {
             NextLine();
         }
@@ -83,7 +66,7 @@ public class NPC : MonoBehaviour
             dialogueText.SetText(dialogueData.dialogueLines[dialogueIndex]);
             isTyping = false;
         }
-        else if (++dialogueIndex < dialogueData.dialogueLines.Length)
+        else if(++dialogueIndex < dialogueData.dialogueLines.Length)
         {
             StartCoroutine(TypeLine());
         }
@@ -100,24 +83,13 @@ public class NPC : MonoBehaviour
 
         foreach (char letter in dialogueData.dialogueLines[dialogueIndex])
         {
-            // --- MODIFIED ---
-            // Check if there is a sound clip and the character is not a space
-            if (dialogueData.vioceSound != null && letter != ' ')
-            {
-                // Set the pitch from the dialogue data
-                audioSource.pitch = dialogueData.voicePitch;
-
-                // Play the sound clip once. PlayOneShot is great for rapid, overlapping sounds.
-                audioSource.PlayOneShot(dialogueData.vioceSound);
-            }
-
             dialogueText.text += letter;
             yield return new WaitForSeconds(dialogueData.typingSpeed);
         }
 
         isTyping = false;
 
-        if (dialogueData.autoProgressLines.Length > dialogueIndex && dialogueData.autoProgressLines[dialogueIndex])
+        if(dialogueData.autoProgressLines.Length > dialogueIndex && dialogueData.autoProgressLines[dialogueIndex])
         {
             yield return new WaitForSeconds(dialogueData.AutoProgressDelay);
             NextLine();
