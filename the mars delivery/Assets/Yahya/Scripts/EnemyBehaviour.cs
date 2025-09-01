@@ -35,7 +35,7 @@ public class EnemyBehaviour : MonoBehaviour
         health = maxHealth;
         UpdateHealthBar();
         s = GetComponent<CinemachineImpulseSource>();
-        spawnManager = GetComponent<SpawnManager>();
+        spawnManager = FindObjectOfType<SpawnManager>();
         audioSource = GetComponent<AudioSource>();
     }
 

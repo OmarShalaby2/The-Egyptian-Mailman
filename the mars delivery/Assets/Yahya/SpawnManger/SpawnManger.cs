@@ -48,7 +48,7 @@ public class SpawnManager : MonoBehaviour
     }
     public void decrument_enemies()
     {
-        currentEnemies--;
+        currentEnemies = Mathf.Max(0, currentEnemies - 1);
         Debug.Log("An enemy has been killed." + currentEnemies);
 
     }
