@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PickUp : MonoBehaviour
 {
-    public enum ResourceType { SquibblesR, RawHotDogsR, CookedHotDogsR }
+    public enum ResourceType { SquibblesR, RawHotDogsR, CookedHotDogsR, RocketPartsR }
     public ResourceType type;
 
     private void OnTriggerEnter2D(Collider2D other)

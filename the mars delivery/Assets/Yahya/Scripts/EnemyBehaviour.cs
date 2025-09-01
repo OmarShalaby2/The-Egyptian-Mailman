@@ -28,6 +28,8 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private AudioClip hitSound;  // assign in Inspector
     public AudioSource audioSource;
 
+    public bool IsBoss = false;
+    public GameObject RokketParts;
 
 
     private void Start()
@@ -77,10 +79,17 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void DropLoot()
     {
-        if (Squibble != null)
-            Instantiate(Squibble, transform.position, Quaternion.identity);
+        if (Squibble != null && IsBoss == false) Instantiate(Squibble, transform.position, Quaternion.identity);
+        else if (Squibble != null && IsBoss == true)
+        {
+            for (int i = 0; i < 5; i++)
+            {
+                Instantiate(Squibble, transform.position, Quaternion.identity);
+            }
+            if (RokketParts != null) Instantiate(RokketParts, transform.position, Quaternion.identity);
+        }
 
-        Debug.Log("The Enemy Dropped a Squibble!");
+
     }
 
     private void Die()
