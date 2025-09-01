@@ -39730,10 +39730,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueData: {fileID: 11400000, guid: dfa9ac9c3d27d8547a3d2a08fbdeb60c, type: 2}
-  dialoguePanel: {fileID: 7311176125093026109}
-  dialogueText: {fileID: 3090750827192192308}
-  nameText: {fileID: 1467682728768517922}
-  portraitImage: {fileID: 82097987773027329}
+  dialoguePanel: {fileID: 0}
+  dialogueText: {fileID: 0}
+  nameText: {fileID: 0}
+  portraitImage: {fileID: 0}
 --- !u!61 &1641867640
 BoxCollider2D:
   m_ObjectHideFlags: 0
