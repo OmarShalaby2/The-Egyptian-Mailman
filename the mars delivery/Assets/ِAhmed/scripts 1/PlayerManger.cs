@@ -91,6 +91,7 @@ public class PlayerManager : MonoBehaviour
         foreach (var hit in Physics2D.OverlapCircleAll(attackPoint.position, attackRange, enemyLayers))
         {
             hit.GetComponent<EnemyBehaviour>()?.TakeDamage(10);
+            hit.GetComponent<BossScript>()?.TakeDamage(10);
             Rigidbody2D rb = hit.GetComponent<Rigidbody2D>();
             if (rb != null)
             {

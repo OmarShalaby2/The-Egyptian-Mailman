@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: "Assets/\u0650Ahmed/Scenes/Test Scenes/shop.unity"
     guid: 0701e36128ef8474ca24d63b4c751b04
+  - enabled: 1
+    path: "Assets/\u0650Ahmed/Scenes/Attachable ready Scenes/AfterBoss.unity"
+    guid: e6232bd53b7d4324693d078daf6889f4
   m_configObjects: {}
