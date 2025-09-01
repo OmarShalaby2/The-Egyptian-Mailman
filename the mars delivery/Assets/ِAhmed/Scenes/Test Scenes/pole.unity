@@ -83574,8 +83574,6 @@ GameObject:
   - component: {fileID: 1648543585864100506}
   - component: {fileID: 7542152481083883769}
   - component: {fileID: 7241817823730342925}
-  - component: {fileID: 7868260050709330647}
-  - component: {fileID: 7868260050709330648}
   m_Layer: 3
   m_Name: Boss
   m_TagString: Untagged
@@ -83624,7 +83622,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 100
-  isBoss: 1
   KnockBackForce: 200
   Squibble: {fileID: 6053651631486347318, guid: ad7be8b397de0e64b82fc9a121308687, type: 3}
   enemyAI: {fileID: 0}
@@ -83872,37 +83869,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7868260050709330647
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5331564330171916253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80a049e37730d6b479fc2995205de0db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  voiceLines:
-  - {fileID: 8300000, guid: 6154e63229ea0b24988d1874b89e23d4, type: 3}
-  - {fileID: 8300000, guid: 16af84a89547188438de02514780070e, type: 3}
-  - {fileID: 8300000, guid: 3cfdeb7759ba36444bfa5f1efa6a40fa, type: 3}
-  minDelay: 2
-  maxDelay: 5
---- !u!114 &7868260050709330648
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5331564330171916253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1ab013e13a945484390607038a8cf4ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
 --- !u!114 &8091571001844022803
 MonoBehaviour:
   m_ObjectHideFlags: 0

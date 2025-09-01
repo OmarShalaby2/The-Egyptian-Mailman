@@ -180,34 +180,5 @@ public class PlayerManager : MonoBehaviour
     {
         sprite.color = originalColor;
     }
-    // Add these new methods to your PlayerManager.cs script
-
-    public void TakeDamage(float damage)
-    {
-        // Reduce health by the damage amount
-        Health -= damage;
-        Debug.Log("Player health: " + Health);
-
-        // Call the flash effect for visual feedback
-        
-
-        // Optional: Update a health bar UI
-        // uimanger?.UpdateHealth(Health);
-
-        // Check if the player has run out of health
-        if (Health <= 0)
-        {
-            Die();
-        }
-    }
-
-    private void Die()
-    {
-        Debug.Log("Player has died!");
-
-        // This stops the player from being controlled after death
-        this.enabled = false;
-        rb.velocity = Vector2.zero; // Stop all movement
-    }
 
 }
