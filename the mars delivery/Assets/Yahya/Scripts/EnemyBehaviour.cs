@@ -27,8 +27,7 @@ public class EnemyBehaviour : MonoBehaviour
     [Header("Audio")]
     [SerializeField] private AudioClip hitSound;  // assign in Inspector
     public AudioSource audioSource;
-
-
+    public SpawnManager spawnManager;
 
     private void Start()
     {
@@ -36,7 +35,7 @@ public class EnemyBehaviour : MonoBehaviour
         health = maxHealth;
         UpdateHealthBar();
         s = GetComponent<CinemachineImpulseSource>();
-
+        spawnManager = GetComponent<SpawnManager>();
         audioSource = GetComponent<AudioSource>();
     }
 
@@ -86,7 +85,9 @@ public class EnemyBehaviour : MonoBehaviour
     private void Die()
     {
         Debug.Log("Enemy has been defeated!");
+        spawnManager.decrument_enemies();
         Destroy(gameObject);
+        
 
     }
 
