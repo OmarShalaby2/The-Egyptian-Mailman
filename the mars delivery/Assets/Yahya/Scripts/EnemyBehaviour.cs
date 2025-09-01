@@ -48,6 +48,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public void TakeDamage(int damageAmount)
     {
+        StartCoroutine(DamageRoutine());
         health -= damageAmount;
 
         // ✅ Spawn red particles
@@ -69,8 +70,7 @@ public class EnemyBehaviour : MonoBehaviour
 
         if (health <= 0)
         {
-            Die();
-            DropLoot();
+            StartCoroutine(DeathRoutine());
         }
     }
 
@@ -94,6 +94,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
+            StartCoroutine(AttackRoutine());
             Manager = FindObjectOfType<UIManger>();
             Manager.TakeDamge(25);
 
@@ -116,5 +117,25 @@ public class EnemyBehaviour : MonoBehaviour
             timer += Time.deltaTime;
             yield return null;
         }
+    }
+    IEnumerator AttackRoutine()
+    {
+        animator.SetBool("attack", true);
+        //enemyAI.enabled = false;
+        yield return new WaitForSeconds(1f); // length of your attack anim
+        //enemyAI.enabled = true;
+        animator.SetBool("attack", false);
+    }
+    IEnumerator DamageRoutine()
+    {
+        animator.SetBool("damage", true);
+        yield return new WaitForSeconds(1f); // length of your attack anim
+        animator.SetBool("damage", false);
+    }
+    IEnumerator DeathRoutine()
+    {
+        yield return new WaitForSeconds(1.3f); // length of your attack anim
+        Die();
+        DropLoot();
     }
 }

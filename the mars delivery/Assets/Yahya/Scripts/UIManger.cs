@@ -12,6 +12,7 @@ public class UIManger : MonoBehaviour
     private CinemachineImpulseSource s;
     [SerializeField] private AudioClip hitSound;  
     public AudioSource audioSource;
+    private float max_health = 100f;
 
     private void Start()
     {
@@ -21,7 +22,12 @@ public class UIManger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q)) TakeDamge(10);
         if (Input.GetKeyDown(KeyCode.E)) HealAmount(10);
-        if (CurrentHealth <= 0) Application.LoadLevel(Application.loadedLevel);
+        if (CurrentHealth <= 0)
+        {
+            CurrentHealth = max_health;
+            HealthSlider.fillAmount = CurrentHealth / max_health;
+            Application.LoadLevel(Application.loadedLevel);
+        }
     }
 
     public void TakeDamge(int damage)
@@ -40,8 +46,8 @@ public class UIManger : MonoBehaviour
     {
         if (HealthSlider.fillAmount == 1) return;
         CurrentHealth += heal;
-        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, 100);
-        HealthSlider.fillAmount = CurrentHealth / 100f;
+        CurrentHealth = Mathf.Clamp(CurrentHealth, 0, max_health);
+        HealthSlider.fillAmount = CurrentHealth / max_health;
     }
 
     // ✅ Now just updates UI text using SquibbleSpawner’s count

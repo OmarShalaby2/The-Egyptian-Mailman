@@ -39730,10 +39730,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialogueData: {fileID: 11400000, guid: dfa9ac9c3d27d8547a3d2a08fbdeb60c, type: 2}
-  dialoguePanel: {fileID: 0}
-  dialogueText: {fileID: 0}
-  nameText: {fileID: 0}
-  portraitImage: {fileID: 0}
+  dialoguePanel: {fileID: 7311176125093026109}
+  dialogueText: {fileID: 3090750827192192308}
+  nameText: {fileID: 1467682728768517922}
+  portraitImage: {fileID: 82097987773027329}
 --- !u!61 &1641867640
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -40718,7 +40718,7 @@ Transform:
   m_GameObject: {fileID: 4603457152350248177}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.068122864, y: -1.6336385, z: -0.009691154}
+  m_LocalPosition: {x: -0.03, y: -0.31, z: -0.009691154}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -41097,7 +41097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f2470a73663d13469f3d6aeeb186669, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 10
   acceleration: 20
   attackPoint: {fileID: 1104297458551054839}
   attackRange: 1.2
@@ -41734,7 +41734,7 @@ Transform:
   m_GameObject: {fileID: 5049475186557538374}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.009691154}
+  m_LocalPosition: {x: 0, y: 0.76, z: -0.009691154}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -42282,7 +42282,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.03785765, y: -0.08833429}
+  m_Offset: {x: 0.03785765, y: -0.1335727}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -42293,7 +42293,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.74425244, y: 1.753787}
+  m_Size: {x: 0.74425244, y: 0.3966453}
   m_EdgeRadius: 0
 --- !u!1 &5049475186557538374
 GameObject:
