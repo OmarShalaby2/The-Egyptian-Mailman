@@ -11,6 +11,7 @@ public class PickUp : MonoBehaviour
         {
             Inventory.Instance.Add(type, 1);
             Destroy(gameObject);
+            Debug.Log($"{type} Picked Up!" );
         }
     }
 }
