@@ -37408,7 +37408,7 @@ Transform:
   m_GameObject: {fileID: 1270424022}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -323.4, y: 52.23, z: -9.990309}
+  m_LocalPosition: {x: -350.74, y: 51.96, z: -9.990309}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -83630,6 +83630,8 @@ MonoBehaviour:
   hitParticlesPrefab: {fileID: 2528666951979935117, guid: c9b6e3a296de88b4b8de4aedad890b59, type: 3}
   hitSound: {fileID: 8300000, guid: 232b92c87fab5f045a54dab3f312fb98, type: 3}
   audioSource: {fileID: 7241817823730342925}
+  IsBoss: 1
+  RokketParts: {fileID: 3832308536029694533, guid: 506c08e1c8f13724eb5503e03ae9e3a5, type: 3}
 --- !u!82 &7241817823730342925
 AudioSource:
   m_ObjectHideFlags: 0

@@ -6,10 +6,10 @@ public class Inventory : MonoBehaviour
 {
     public static Inventory Instance;
 
-    public int RawHotDogs, CookedHotDogs, squibbles;
+    public int RawHotDogs, CookedHotDogs, squibbles, RocketParts;
 
     [Header("UI References")]
-    public TMP_Text SquibbleT, RawHotDogsT, CookedHotDogsT;
+    public TMP_Text SquibbleT, RawHotDogsT, CookedHotDogsT, RocketPartsT;
 
     public SquibbleSpawner squibbleSpawner;
 
@@ -33,6 +33,7 @@ public class Inventory : MonoBehaviour
         SquibbleT = GameObject.Find("squibbles count")?.GetComponent<TMP_Text>();
         RawHotDogsT = GameObject.Find("RawHotDogsText")?.GetComponent<TMP_Text>();
         CookedHotDogsT = GameObject.Find("CookedHotDogsText")?.GetComponent<TMP_Text>();
+        RocketPartsT = GameObject.Find("RocketPartsText")?.GetComponent<TMP_Text>();
 
         RefreshUI();
     }
@@ -49,6 +50,7 @@ public class Inventory : MonoBehaviour
         if (!SquibbleT) SquibbleT = GameObject.Find("SquibbleText")?.GetComponent<TMP_Text>();
         if (!RawHotDogsT) RawHotDogsT = GameObject.Find("RawHotDogsText")?.GetComponent<TMP_Text>();
         if (!CookedHotDogsT) CookedHotDogsT = GameObject.Find("CookedHotDogsText")?.GetComponent<TMP_Text>();
+        if (!RocketPartsT) RocketPartsT = GameObject.Find("RocketPartsText")?.GetComponent<TMP_Text>();
 
         // Refresh after re-hook
         RefreshUI();
@@ -59,6 +61,8 @@ public class Inventory : MonoBehaviour
         if (type == PickUp.ResourceType.SquibblesR) squibbles += amount;
         if (type == PickUp.ResourceType.RawHotDogsR) RawHotDogs += amount;
         if (type == PickUp.ResourceType.CookedHotDogsR) CookedHotDogs += amount;
+        if (type == PickUp.ResourceType.RocketPartsR) RocketParts += amount;
+
         RefreshUI();
     }
 
@@ -77,6 +81,7 @@ public class Inventory : MonoBehaviour
         if (SquibbleT) SquibbleT.text = $"{squibbles}";
         if (RawHotDogsT) RawHotDogsT.text = $"{RawHotDogs}";
         if (CookedHotDogsT) CookedHotDogsT.text = $"{CookedHotDogs}";
+        if (RocketPartsT) RocketPartsT.text = $"{RocketParts}";
     }
 
     public void SellHotDogs()
