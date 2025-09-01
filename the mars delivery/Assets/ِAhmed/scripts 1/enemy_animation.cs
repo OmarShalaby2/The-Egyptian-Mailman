@@ -17,7 +17,8 @@ public class enemy_animation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
+        animator.SetFloat("health", enemyBehaviour.health);
         animator.SetFloat("magnitude", rb.velocity.magnitude/3f);
         animator.SetFloat("idel_x", rb.velocity.x);
         animator.SetFloat("idel_y", rb.velocity.y);
